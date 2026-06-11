@@ -16,15 +16,87 @@
     "maxStepTimeSeconds": 45,
     "waitForNetworkIdle": false,
     "notes": [
-      "Public static Vercel demo with no authentication required.",
-      "Default seeded hand is deterministic: player hard 16 against dealer 10, with Surrender recommended at EV -0.500."
+      "Public static Vercel demo with no authentication, OAuth, account creation, or payment flow.",
+      "If the interactive app shell is slow in the judging browser, first verify /judge. It is a same-origin static proof page with no JavaScript or redirects.",
+      "Default seeded hand in the app is deterministic: player hard 16 against dealer 10, with Surrender recommended at EV -0.500.",
+      "Repository evidence is available at https://github.com/jameshufforacle/jackblack."
     ]
   },
   "workflows": [
     {
-      "id": "core-demo",
-      "name": "Verify blackjack strategy coach",
-      "purpose": "Proves the playable table and real-time strategy guidance work.",
+      "id": "public-demo-proof",
+      "name": "Verify public judge-safe proof path",
+      "purpose": "Confirms the submitted demo origin is public and not blocked by an auth wall before testing the interactive app.",
+      "startPath": "/judge",
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/judge"
+        },
+        {
+          "action": "assertVisible",
+          "selector": "#judge-proof"
+        },
+        {
+          "action": "assertText",
+          "selector": "#public-access",
+          "value": "Public demo: no login, no OAuth, no payment, no account creation."
+        },
+        {
+          "action": "assertText",
+          "selector": "#proof-player",
+          "value": "Hard 16"
+        },
+        {
+          "action": "assertText",
+          "selector": "#proof-dealer",
+          "value": "10"
+        },
+        {
+          "action": "assertText",
+          "selector": "#proof-action",
+          "value": "Surrender"
+        },
+        {
+          "action": "assertText",
+          "selector": "#proof-ev",
+          "value": "-0.500"
+        },
+        {
+          "action": "assertText",
+          "selector": "#proof-outcome",
+          "value": "Lost 0.5. Optimal."
+        }
+      ],
+      "success": {
+        "requiredUrlPattern": "/judge",
+        "allowedUrlPatterns": [
+          "/judge"
+        ],
+        "allText": [
+          "JackBlack Judge-Safe Demo Proof",
+          "Public demo: no login, no OAuth, no payment, no account creation.",
+          "Hard 16",
+          "10",
+          "Surrender",
+          "-0.500",
+          "Lost 0.5. Optimal."
+        ],
+        "anyText": [],
+        "visibleSelectors": [
+          "#judge-proof",
+          "#public-access",
+          "#proof-action",
+          "#proof-ev",
+          "#app-link",
+          "#repo-link"
+        ]
+      }
+    },
+    {
+      "id": "interactive-strategy-loop",
+      "name": "Verify playable blackjack strategy loop",
+      "purpose": "Proves the real app table recommends the mathematically best move and resolves the deterministic hand.",
       "startPath": "/",
       "steps": [
         {
@@ -91,7 +163,7 @@
       }
     },
     {
-      "id": "coach-and-settings",
+      "id": "coach-and-rules-proof",
       "name": "Verify coach screen and configurable rules",
       "purpose": "Proves the educational analysis and table-rule configuration are present.",
       "startPath": "/",
