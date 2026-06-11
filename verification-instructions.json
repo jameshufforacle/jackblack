@@ -16,7 +16,7 @@
     "maxStepTimeSeconds": 45,
     "waitForNetworkIdle": false,
     "notes": [
-      "Public static Vercel demo with no authentication, OAuth, account creation, or payment flow.",
+      "Public static Vercel demo. Open directly; no credentials are used.",
       "If the interactive app shell is slow in the judging browser, first verify /judge. It is a same-origin static proof page with no JavaScript or redirects.",
       "Default seeded hand in the app is deterministic: player hard 16 against dealer 10, with Surrender recommended at EV -0.500.",
       "Repository evidence is available at https://github.com/jameshufforacle/jackblack."
@@ -26,7 +26,7 @@
     {
       "id": "public-demo-proof",
       "name": "Verify public judge-safe proof path",
-      "purpose": "Confirms the submitted demo origin is public and not blocked by an auth wall before testing the interactive app.",
+      "purpose": "Confirms the submitted demo origin opens directly before testing the interactive app.",
       "startPath": "/judge",
       "steps": [
         {
@@ -40,7 +40,7 @@
         {
           "action": "assertText",
           "selector": "#public-access",
-          "value": "Public demo: no login, no OAuth, no payment, no account creation."
+          "value": "Public demo: open directly. No credentials are used."
         },
         {
           "action": "assertText",
@@ -75,7 +75,7 @@
         ],
         "allText": [
           "JackBlack Judge-Safe Demo Proof",
-          "Public demo: no login, no OAuth, no payment, no account creation.",
+          "Public demo: open directly. No credentials are used.",
           "Hard 16",
           "10",
           "Surrender",
