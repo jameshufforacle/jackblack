@@ -1,0 +1,164 @@
+{
+  "appName": "JackBlack",
+  "baseUrl": "https://jackblack-ten.vercel.app",
+  "auth": {
+    "required": false,
+    "loginPath": "",
+    "username": "",
+    "password": "",
+    "usernameSelector": "",
+    "passwordSelector": "",
+    "submitSelector": "",
+    "successUrlPattern": "",
+    "successText": []
+  },
+  "globalRules": {
+    "maxStepTimeSeconds": 45,
+    "waitForNetworkIdle": false,
+    "notes": [
+      "Public static Vercel demo with no authentication required.",
+      "Default seeded hand is deterministic: player hard 16 against dealer 10, with Surrender recommended at EV -0.500."
+    ]
+  },
+  "workflows": [
+    {
+      "id": "core-demo",
+      "name": "Verify blackjack strategy coach",
+      "purpose": "Proves the playable table and real-time strategy guidance work.",
+      "startPath": "/",
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/"
+        },
+        {
+          "action": "assertVisible",
+          "selector": "main"
+        },
+        {
+          "action": "assertText",
+          "selector": "#tableTitle",
+          "value": "Captain BlackJack's Table"
+        },
+        {
+          "action": "assertText",
+          "selector": "#tableRecommendation",
+          "value": "Surrender"
+        },
+        {
+          "action": "assertText",
+          "selector": "#tableEv",
+          "value": "-0.500"
+        },
+        {
+          "action": "click",
+          "selector": "button[data-action=\"surrender\"]"
+        },
+        {
+          "action": "waitForText",
+          "value": "Lost 0.5. Optimal."
+        },
+        {
+          "action": "assertText",
+          "selector": "#outcomeTitle",
+          "value": "Loss"
+        },
+        {
+          "action": "assertText",
+          "selector": "#roundState",
+          "value": "Lost 0.5. Optimal."
+        }
+      ],
+      "success": {
+        "requiredUrlPattern": "",
+        "allowedUrlPatterns": [
+          "/"
+        ],
+        "allText": [
+          "Captain BlackJack's Table",
+          "Surrender",
+          "-0.500",
+          "Loss",
+          "Lost 0.5. Optimal."
+        ],
+        "anyText": [],
+        "visibleSelectors": [
+          "#dealerHand",
+          "#playerHand",
+          "#outcomeBanner",
+          "#roundState"
+        ]
+      }
+    },
+    {
+      "id": "coach-and-settings",
+      "name": "Verify coach screen and configurable rules",
+      "purpose": "Proves the educational analysis and table-rule configuration are present.",
+      "startPath": "/",
+      "steps": [
+        {
+          "action": "goto",
+          "value": "/"
+        },
+        {
+          "action": "click",
+          "selector": "button[data-screen=\"coach\"]"
+        },
+        {
+          "action": "assertText",
+          "selector": "#coachTitle",
+          "value": "Best Move Right Now"
+        },
+        {
+          "action": "assertText",
+          "selector": "#coachAction",
+          "value": "Surrender"
+        },
+        {
+          "action": "assertText",
+          "selector": "#coachExplanation",
+          "value": "Late surrender trims the loss on a hard 16 against a dealer 10."
+        },
+        {
+          "action": "click",
+          "selector": "#settingsButton"
+        },
+        {
+          "action": "assertVisible",
+          "selector": "#settingsPanel"
+        },
+        {
+          "action": "assertVisible",
+          "selector": "#deckCount"
+        },
+        {
+          "action": "assertVisible",
+          "selector": "#blackjackPayout"
+        }
+      ],
+      "success": {
+        "requiredUrlPattern": "",
+        "allowedUrlPatterns": [
+          "/"
+        ],
+        "allText": [
+          "Best Move Right Now",
+          "Surrender",
+          "Late surrender trims the loss on a hard 16 against a dealer 10.",
+          "Table Settings",
+          "Decks",
+          "Blackjack"
+        ],
+        "anyText": [],
+        "visibleSelectors": [
+          "#coachAction",
+          "#coachExplanation",
+          "#settingsPanel",
+          "#deckCount",
+          "#blackjackPayout"
+        ]
+      }
+    }
+  ],
+  "manualReviewTriggers": []
+}

@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JackBlack | Blackjack IQ</title>
+    <link rel="stylesheet" href="./styles.css?v=table-result-bar">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="top-rail">
+        <div class="brand-mark" aria-hidden="true">
+          <span>J</span>
+          <i>&spades;</i>
+        </div>
+        <div class="brand-copy">
+          <p class="eyebrow">BlackJack IQ</p>
+          <h1>JackBlack</h1>
+        </div>
+        <button class="settings-button" type="button" id="settingsButton" aria-controls="settingsPanel" aria-expanded="false">
+          Cove Rules
+        </button>
+      </header>
+
+      <nav class="screen-tabs" aria-label="JackBlack screens">
+        <button class="tab-button is-active" type="button" data-screen="table">Table</button>
+        <button class="tab-button" type="button" data-screen="coach">Coach</button>
+        <button class="tab-button" type="button" data-screen="breakdown">Map</button>
+        <button class="tab-button" type="button" data-screen="summary">Log</button>
+      </nav>
+
+      <aside class="captain-panel" aria-label="JackBlack companion panel">
+        <div class="ship-token" aria-hidden="true">
+          <span>21</span>
+        </div>
+        <p class="eyebrow">The BlackJack Cove</p>
+        <h2>Win the hand. Learn the odds.</h2>
+        <p class="captain-copy">
+          A pirate-table blackjack trainer where every choice gets weighed by the quartermaster before the cards turn.
+        </p>
+        <div class="rule-summary" id="ruleSummary">6 decks / S17 / DAS / Late surrender / Resplit / 3:2</div>
+        <div class="captain-note">
+          <span>Captain's code</span>
+          <strong>Play first. Study between hands.</strong>
+        </div>
+      </aside>
+
+      <div class="settings-backdrop" id="settingsBackdrop" hidden></div>
+      <section class="settings-panel" id="settingsPanel" aria-labelledby="settingsTitle" hidden>
+        <div class="settings-header">
+          <div>
+            <p class="eyebrow">Cove Rules</p>
+            <h2 id="settingsTitle">Table Settings</h2>
+          </div>
+          <button class="settings-close" type="button" id="settingsClose" aria-label="Close table rules">Close</button>
+        </div>
+        <div class="rule-group">
+          <label for="deckCount">Decks</label>
+          <select id="deckCount">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="4">4</option>
+            <option value="6" selected>6</option>
+            <option value="8">8</option>
+          </select>
+        </div>
+        <div class="rule-group">
+          <label for="soft17">Soft 17</label>
+          <select id="soft17">
+            <option value="stand" selected>Dealer stands</option>
+            <option value="hit">Dealer hits</option>
+          </select>
+        </div>
+        <label class="toggle-rule">
+          <input id="doubleAfterSplit" type="checkbox" checked>
+          <span>Double after split</span>
+        </label>
+        <label class="toggle-rule">
+          <input id="lateSurrender" type="checkbox" checked>
+          <span>Late surrender</span>
+        </label>
+        <label class="toggle-rule">
+          <input id="resplitPairs" type="checkbox" checked>
+          <span>Resplit pairs</span>
+        </label>
+        <div class="rule-group">
+          <label for="blackjackPayout">Blackjack</label>
+          <select id="blackjackPayout">
+            <option value="1.5" selected>3:2</option>
+            <option value="1.2">6:5</option>
+          </select>
+        </div>
+      </section>
+
+      <main>
+        <section class="screen is-active" id="screen-table" aria-labelledby="tableTitle">
+          <div class="table-felt">
+            <div class="table-topline">
+              <div>
+                <p class="eyebrow">Table View</p>
+                <h2 id="tableTitle">Captain BlackJack's Table</h2>
+              </div>
+              <button class="secondary-button" type="button" id="newRoundButton">New Deal</button>
+            </div>
+
+            <div class="dealer-row">
+              <div class="seat-label">
+                <span>Dealer</span>
+                <strong id="dealerTotal">Showing 10</strong>
+              </div>
+              <div class="hand-row" id="dealerHand" aria-label="Dealer hand"></div>
+            </div>
+
+            <div class="center-medallion" aria-hidden="true">
+              <svg viewBox="0 0 200 200" role="img">
+                <circle cx="100" cy="100" r="86"></circle>
+                <path d="M100 22v156M22 100h156M44 44l112 112M156 44 44 156"></path>
+                <circle cx="100" cy="100" r="34"></circle>
+              </svg>
+              <span>21</span>
+            </div>
+
+            <div class="outcome-banner" id="outcomeBanner" aria-live="polite" hidden>
+              <span id="outcomeKicker">Round Result</span>
+              <strong id="outcomeTitle">Push</strong>
+              <small id="outcomeDetail">Parley at the cove. No treasure changes hands.</small>
+            </div>
+
+            <div class="player-row">
+              <div class="seat-label">
+                <span id="playerSeatLabel">Player</span>
+                <strong id="playerTotal">16</strong>
+              </div>
+              <div class="hand-row" id="playerHand" aria-label="Player hand"></div>
+            </div>
+
+            <div class="action-bar" aria-label="Player actions">
+              <button class="action-button" type="button" data-action="hit">Hit</button>
+              <button class="action-button" type="button" data-action="stand">Stand</button>
+              <button class="action-button" type="button" data-action="double">Double</button>
+              <button class="action-button" type="button" data-action="split">Split</button>
+              <button class="action-button danger" type="button" data-action="surrender">Surrender</button>
+            </div>
+
+            <div class="status-grid" aria-label="Quartermaster readout">
+              <article class="status-card primary">
+                <span>Quartermaster</span>
+                <strong id="tableRecommendation">Surrender</strong>
+              </article>
+              <article class="status-card">
+                <span>EV</span>
+                <strong id="tableEv">-0.500</strong>
+              </article>
+              <article class="status-card">
+                <span>Bust</span>
+                <strong id="tableBust">0%</strong>
+              </article>
+              <article class="status-card">
+                <span>Shoe</span>
+                <strong id="shoeCount">309</strong>
+              </article>
+            </div>
+          </div>
+          <div class="round-state table-round-state" id="roundState">Fresh shoe. Table is open.</div>
+        </section>
+
+        <section class="screen" id="screen-coach" aria-labelledby="coachTitle">
+          <div class="section-heading">
+            <p class="eyebrow">Quartermaster Coach</p>
+            <h2 id="coachTitle">Best Move Right Now</h2>
+          </div>
+          <div class="coach-layout">
+            <article class="recommendation-panel">
+              <span class="panel-label">Recommended action</span>
+              <strong id="coachAction">Surrender</strong>
+              <p id="coachExplanation">Late surrender trims the loss on a hard 16 against a dealer 10.</p>
+              <div class="coach-stats">
+                <div>
+                  <span>EV</span>
+                  <strong id="coachEv">-0.500</strong>
+                </div>
+                <div>
+                  <span>Win</span>
+                  <strong id="coachWin">0%</strong>
+                </div>
+                <div>
+                  <span>Lose</span>
+                  <strong id="coachLose">100%</strong>
+                </div>
+                <div>
+                  <span>Push</span>
+                  <strong id="coachPush">0%</strong>
+                </div>
+              </div>
+            </article>
+            <article class="odds-panel">
+              <span class="panel-label">Outcome probabilities</span>
+              <div class="probability-bars" id="probabilityBars"></div>
+            </article>
+          </div>
+          <div class="ev-board" id="evBoard" aria-label="Expected values by action"></div>
+        </section>
+
+        <section class="screen" id="screen-breakdown" aria-labelledby="breakdownTitle">
+          <div class="section-heading">
+            <p class="eyebrow">Treasure Map</p>
+            <h2 id="breakdownTitle">Decision Map</h2>
+          </div>
+          <div class="breakdown-grid">
+            <article class="analysis-copy">
+              <span class="panel-label">Why it wins</span>
+              <p id="deepExplanation"></p>
+            </article>
+            <article class="analysis-copy">
+              <span class="panel-label">What if</span>
+              <p id="whatIfCopy"></p>
+            </article>
+          </div>
+          <div class="comparison-table" id="comparisonTable" aria-label="Action comparison"></div>
+        </section>
+
+        <section class="screen" id="screen-summary" aria-labelledby="summaryTitle">
+          <div class="section-heading">
+            <p class="eyebrow">Captain's Log</p>
+            <h2 id="summaryTitle">Last Hand</h2>
+          </div>
+          <div class="summary-board">
+            <article>
+              <span>Result</span>
+              <strong id="summaryResult">Round in progress</strong>
+            </article>
+            <article>
+              <span>Decision quality</span>
+              <strong id="summaryQuality">Awaiting choice</strong>
+            </article>
+            <article>
+              <span>Learning note</span>
+              <p id="summaryNote">The coach will compare your first decision against the best available EV.</p>
+            </article>
+          </div>
+          <div class="round-log" id="roundLog" aria-label="Round log"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js?v=table-result-bar"></script>
+  </body>
+</html>
