@@ -4,6 +4,8 @@ JackBlack is a pirate-themed, game-first blackjack trainer built for the OCI Hac
 
 Live demo: https://jackblack-ten.vercel.app
 
+Repository: https://github.com/jameshufforacle/jackblack
+
 ## Problem
 
 Casual blackjack players often want to improve, but the tools available to them are split in two:
@@ -87,4 +89,3 @@ The app is deployed on Vercel as a static site:
 ```bash
 vercel deploy --prod --yes
 ```
-

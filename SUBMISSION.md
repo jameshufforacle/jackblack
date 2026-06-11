@@ -2,7 +2,7 @@
 
 ## Repository URL
 
-Add the public GitHub repository URL once created.
+https://github.com/jameshufforacle/jackblack
 
 ## Demo URL
 
@@ -35,4 +35,3 @@ This proves the core product loop: playable blackjack, deterministic strategy an
 ## Differentiation
 
 Most blackjack apps are either games without instruction or charts without gameplay. JackBlack combines both. It is game-first enough to feel fun and educational enough to teach the math behind every decision. The deterministic strategy engine keeps recommendations trustworthy, while the pirate-themed coaching layer makes the learning experience approachable.
-
