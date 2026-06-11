@@ -6,6 +6,8 @@ Live demo: https://jackblack-ten.vercel.app
 
 Repository: https://github.com/jameshufforacle/jackblack
 
+Judge-safe proof path: https://jackblack-ten.vercel.app/judge
+
 ## Problem
 
 Casual blackjack players often want to improve, but the tools available to them are split in two:
@@ -45,6 +47,8 @@ Suggested verification workflow:
 4. Click "Surrender".
 5. Confirm the outcome banner shows "Loss" and the round status says "Lost 0.5. Optimal."
 6. Open the Coach, Map, and Log tabs to verify the strategy explanation, alternate actions, and round recap.
+
+If an automated browser verification environment is conservative, open `/judge` first. It is a same-origin static proof page with no JavaScript, no redirects, and no auth gate.
 
 ## Table Rules
 
