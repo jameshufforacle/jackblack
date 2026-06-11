@@ -16,11 +16,19 @@ This same-origin page is intentionally static and minimal so automated browser v
 
 ## Target Customer and Market Scope
 
-The primary user is a casual blackjack player who understands the basic rules but does not know how to make optimal decisions under pressure. This includes people practicing before a casino trip, mobile blackjack players trying to improve, and beginners who watch strategy content but struggle to apply it during a hand. Today, that player either uses a casino-style blackjack app that gives no strategic feedback, or pauses the game to look up a separate strategy chart. Both workflows are frustrating because the learning happens away from the moment of decision.
+The primary user is a casual blackjack player who understands the basic rules but does not know how to make optimal decisions under pressure. A specific example is someone practicing before a Vegas trip, cruise casino night, or online practice session. Today, that player either uses a casino-style blackjack app that only says win or loss, or pauses the game to look up a separate strategy chart. That is frustrating because blackjack decisions happen quickly, and the player rarely learns why a decision was good or bad at the moment it matters.
 
-The buyer or adopter could be a consumer gaming studio, casino-affiliate education site, blackjack training creator, or edtech platform teaching probability through games. This market is reachable because these buyers already acquire users through app stores, YouTube/TikTok strategy content, SEO pages for blackjack basic strategy, and casino education funnels. JackBlack gives them an interactive product loop instead of another static article or chart.
+The buyer or adopter is a consumer gaming studio, casino education site, blackjack training creator, or edtech/gaming platform teaching probability through play. This market is reachable because these buyers already acquire users through app stores, short-form strategy videos, SEO pages for blackjack basic strategy, and casino education funnels. JackBlack gives those channels an interactive product loop instead of another static article or chart.
 
-The scope is larger than one hobbyist use case. Public app-store and web-search behavior show blackjack is a mainstream casual game category, and basic strategy content is a persistent search/creator niche. Even a small slice of casual blackjack learners, casino-trip planners, and content audiences represents a reachable market of thousands of creators/sites and millions of recreational players. The pain is not just losing hands; it is playing repeatedly without understanding why a decision was good or bad.
+The scope is larger than one hobbyist use case. The American Gaming Association reported $20.09B in U.S. commercial gaming revenue in Q1 2026, including $2.50B from table games and $3.04B from iGaming. Blackjack is one of the most recognizable table games inside that broader market, and basic strategy content persists because the game has a real skill gap: basic strategy can materially reduce expected loss, but most recreational players do not internalize a chart during play. Even a small slice of casino-trip planners, mobile card-game players, and blackjack content audiences represents a reachable market measured in millions of recreational players and thousands of content or affiliate distribution points.
+
+The pain is not only losing a hand. The pain is repeating uncertain decisions without feedback. When a player has hard 16 against dealer 10, they often guess, hesitate, or memorize a rule without understanding the expected value tradeoff. JackBlack targets that moment directly.
+
+## Before and After Workflow
+
+Before JackBlack, a casual player starts a blackjack app, gets a difficult hand, leaves the game mentally or physically to check a strategy chart, returns to the table, makes a choice, and still may not understand the expected value behind that choice. The learning loop is slow, fragmented, and easy to abandon.
+
+After JackBlack, the player stays at the table. They see the hand, review the recommended move, compare EV and win/loss/push probabilities, make a real game action, and immediately receive an outcome plus a short learning note. The demo proves this with the seeded hard 16 vs dealer 10 hand: JackBlack recommends Surrender at EV -0.500, resolves the hand, and explains why that decision is better than the alternatives.
 
 ## Technical Execution and Demo Proof
 
