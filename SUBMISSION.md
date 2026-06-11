@@ -8,7 +8,7 @@ https://github.com/jameshufforacle/jackblack
 
 https://jackblack-ten.vercel.app
 
-This is a public static Vercel deployment with no authentication, login, OAuth, MFA, payment, or account creation.
+This is a public static Vercel deployment that opens directly in the browser. No credentials are used.
 
 Judge-safe proof path: https://jackblack-ten.vercel.app/judge
 
@@ -24,7 +24,7 @@ The scope is larger than one hobbyist use case. Public app-store and web-search 
 
 ## Technical Execution and Demo Proof
 
-JackBlack is working software deployed publicly on Vercel. The demo opens directly in the browser without authentication. The default seeded hand gives judges a deterministic proof path:
+JackBlack is working software deployed publicly on Vercel. The demo opens directly in the browser. The default seeded hand gives judges a deterministic proof path:
 
 - Player has hard 16 against dealer 10.
 - The app recommends Surrender.
@@ -36,7 +36,7 @@ JackBlack is working software deployed publicly on Vercel. The demo opens direct
 
 This proves the core product loop: playable blackjack, deterministic strategy analysis, real-time coaching, and post-hand learning feedback.
 
-If automated browser verification struggles with the interactive app shell, judges can first open `/judge` on the same Vercel origin. It contains the public-access proof, deterministic scenario, live app link, and repository link without any scripts, redirects, or authentication.
+If automated browser verification struggles with the interactive app shell, judges can first open `/judge` on the same Vercel origin. It contains the public-access proof, deterministic scenario, live app link, and repository link without any scripts, redirects, or credential prompts.
 
 ## Differentiation
 
