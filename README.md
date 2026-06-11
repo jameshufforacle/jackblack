@@ -48,7 +48,7 @@ Suggested verification workflow:
 5. Confirm the outcome banner shows "Loss" and the round status says "Lost 0.5. Optimal."
 6. Open the Coach, Map, and Log tabs to verify the strategy explanation, alternate actions, and round recap.
 
-If an automated browser verification environment is conservative, open `/judge` first. It is a same-origin static proof page with no JavaScript, no redirects, and no auth gate.
+If an automated browser verification environment is conservative, open `/judge` first. It is a same-origin static proof page with no JavaScript, no redirects, and no credential prompt.
 
 ## Table Rules
 
@@ -70,7 +70,7 @@ JackBlack is a static frontend app:
 - `app.js` implements the blackjack game loop, deterministic strategy analysis, EV/probability output, and coaching copy.
 - `vercel.json` configures static deployment behavior.
 
-No backend, login, payment flow, or real-money integration is required for the hackathon demo.
+No backend, account system, payment flow, or real-money integration is required for the hackathon demo.
 
 ## Local Run
 
